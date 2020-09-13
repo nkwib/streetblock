@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/ranking.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+
+<body>
+
+<div class="action-buttons">
+    <button class="go-to-problems btn" onclick="goToBlocks()">
+        <i class="fal fa-sign-out reverse"></i>
+    </button>
+    <button class="go-to-problems btn" onclick="update()">
+        <i class="fal fa-sync"></i>
+    </button>
+</div>
+<!--<h1><%= uid %></h1>-->
+<div id="rankingList">
+</div>
+<!--<div id="rankingList">-->
+<!--</div>-->
+
+<script>
+    function goToBlocks() {
+        window.location.href = '/'
+    }
+
+    function update() {
+        fetch('/getRanking').then(res => {
+            res.json().then(data => {
+                let list = document.getElementById('rankingList')
+                list.innerHTML = '';
+                data.forEach((athl, i) => {
+                    let node = document.createElement("DIV");
+                    node.classList.add('list')
+                    if (athl.name === 'ytijifwm' || athl.name === '<%= uid %>') node.classList.add('isSelf')
+                    let textnode = document.createTextNode(athl.name + ' - ' + athl.score);
+                    node.appendChild(textnode);
+                    node.innerHTML = `<div class="badge">
+                                        <div class="position">
+                                            ${i+1}
+                                        </div>
+                                    </div>
+                                    <div class="athlete">
+                                        <div class="main">
+                                            ${athl.name}
+                                        </div>
+<!--                                        <div class="subtitle">-->
+<!--                                            Atleta-->
+<!--                                        </div>-->
+                                    </div>
+                                    <div class="score">
+                                        <div class="main">
+                                            ${parseInt(athl.score)}
+                                        </div>
+<!--                                        <div class="subtitle">-->
+<!--                                            Punteggio-->
+<!--                                        </div>-->
+                                    </div>`;
+                    list.appendChild(node)
+                });
+            })
+        })
+    }
+
+    update();
+    setInterval(() => update(), 20000);
+</script>
+</body>
+
+</html>

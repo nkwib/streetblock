@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <style>
+        body{
+            margin: 0;
+        }
+        .action-buttons {
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            padding: 32px;
+            position: fixed;
+            bottom: 0;
+            width: calc(100vw - 64px);
+            background: #343A40;
+            z-index: 2;
+        }
+
+        .btn {
+            font-size: 20px;
+            height: 50px;
+            width: 50px;
+            color: white;
+            border: 0;
+            border-radius: 50%;
+            background: #690606;
+        }
+        .map-container {
+            height: calc(100vh - 114px);
+            overflow: scroll;
+        }
+        .reverse {
+            transform: scaleX(-1);
+        }
+    </style>
+</head>
+<body>
+    <div class="map-container">
+        <img src="map.svg">
+    </div>
+    <div class="action-buttons">
+        <button class="go-to-problems btn" onclick="goToBlocks()">
+            <i class="fal fa-sign-out reverse"></i>
+        </button>
+    </div>
+    <script>
+        function goToBlocks() {
+            window.location.href = '/'
+        }
+    </script>
+</body>
+</html>

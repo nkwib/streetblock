@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accedi</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <style>
+        body {
+            background: #474A59;
+            color: #F1F1F2;
+        }
+        .main-login{
+            margin-top: 12vh;
+        }
+        .login-btn{
+            position: fixed;
+            /*bottom: 32px;*/
+            right: 32px;
+            font-size: 20px;
+            height: 50px;
+            width: 50px;
+            color: white;
+            border: 0;
+            border-radius: 50%;
+            background: #339911;
+        }
+        .login-row{
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+        input{
+            font-size: 30px;
+            max-width: calc(100vw - 112px)
+        }
+    </style>
+</head>
+
+<body>
+<div class="main-login">
+    <form action="/login" method="POST">
+        <div class="login-row">
+            <label for="username">
+                <input class="custom-input" type="text" name="uid" id="uid">
+            </label>
+
+            <button class="login-btn" type="submit">
+                <i class="fas fa-sign-in-alt"></i>
+            </button>
+        </div>
+        <div class="row">
+        </div>
+    </form>
+</div>
+<script>
+    function getUIDCookie() {
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf('userData') == 0)
+                return c.split('=')[1]
+        }
+    }
+
+    let userUID = getUIDCookie();
+    if (!!userUID) {
+        document.getElementById('uid').value = userUID;
+    }
+</script>
+</body>
+
+</html>
