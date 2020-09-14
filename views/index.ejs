@@ -12,6 +12,7 @@
             color: #F1F1F2;
         }
         .main-login{
+            display: none;
             margin-top: 12vh;
         }
         .login-btn{
@@ -46,7 +47,7 @@
                 <input class="custom-input" type="text" name="uid" id="uid">
             </label>
 
-            <button class="login-btn" type="submit">
+            <button class="login-btn" type="submit" id="login-btn">
                 <i class="fas fa-sign-in-alt"></i>
             </button>
         </div>
@@ -70,6 +71,9 @@
     let userUID = getUIDCookie();
     if (!!userUID) {
         document.getElementById('uid').value = userUID;
+        document.getElementById('login-btn').click();
+    } else {
+        document.getElementsByClassName('main-login')[0].style.display = 'block';
     }
 </script>
 </body>
