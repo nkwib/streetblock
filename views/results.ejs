@@ -15,7 +15,7 @@
     <button class="go-to-problems btn" onclick="goToBlocks()">
         <i class="fal fa-sign-out reverse"></i>
     </button>
-    <button class="go-to-problems btn" onclick="update()">
+    <button class="go-to-problems btn" onclick="askForUpdate()">
         <i class="fal fa-sync"></i>
     </button>
 </div>
@@ -30,20 +30,26 @@
         window.location.href = '/'
     }
 
+    function askForUpdate() {
+        let result = confirm('vuoi Aggiornare la classifica?');
+        if (result)
+            update()
+    }
+
     function update() {
-        fetch('/getRanking').then(res => {
-            res.json().then(data => {
-                let list = document.getElementById('rankingList')
-                list.innerHTML = '';
-                data.forEach((athl, i) => {
-                    let node = document.createElement("DIV");
-                    node.classList.add('list')
-                    if (athl.name === 'ytijifwm' || athl.name === '<%= uid %>') node.classList.add('isSelf')
-                    let textnode = document.createTextNode(athl.name + ' - ' + athl.score);
-                    node.appendChild(textnode);
-                    node.innerHTML = `<div class="badge">
+            fetch('/getRanking').then(res => {
+                res.json().then(data => {
+                    let list = document.getElementById('rankingList')
+                    list.innerHTML = '';
+                    data.forEach((athl, i) => {
+                        let node = document.createElement("DIV");
+                        node.classList.add('list')
+                        if (athl.name === 'ytijifwm' || athl.name === '<%= uid %>') node.classList.add('isSelf')
+                        let textnode = document.createTextNode(athl.name + ' - ' + athl.score);
+                        node.appendChild(textnode);
+                        node.innerHTML = `<div class="badge">
                                         <div class="position">
-                                            ${i+1}
+                                            ${i + 1}
                                         </div>
                                     </div>
                                     <div class="athlete">
@@ -62,10 +68,10 @@
 <!--                                            Punteggio-->
 <!--                                        </div>-->
                                     </div>`;
-                    list.appendChild(node)
-                });
+                        list.appendChild(node)
+                    });
+                })
             })
-        })
     }
 
     update();

@@ -16,14 +16,14 @@ function writeUserData(uid, i) {
     }
     let xhr = new XMLHttpRequest();
     xhr.open("POST", `/markCompleted/${uid}`, true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify(completed));
     xhr.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             completed.includes(i)? markAsCompleted(i) : unMark(i);
         }
     }
     // console.log(JSON.stringify(completed))
-    xhr.send(JSON.stringify(completed));
 }
 
 function toggleBlock(uid, i) {

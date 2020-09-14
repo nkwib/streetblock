@@ -53,7 +53,7 @@ app.use(express.json());
 
 //setup public folder
 app.use(express.static('./public'));
-app.get('/', (req, res) => {
+app.get('', (req, res) => {
     res.render('index')
 });
 
@@ -130,15 +130,13 @@ function getCompletedBlocks(uid) {
 }
 
 function markCompletedBlocks(uid, body) {
-    // console.log(`[${Object.keys(body)}]`)
     if (debug) {
         return {}
     }
     return new Promise((resolve, reject) => {
-        let completed = `[${Object.keys(body)}]`
         db.ref('athletes/' + uid).set({
             username: uid,
-            completed: completed
+            completed: JSON.stringify(body)
         });
         resolve({});
     })
