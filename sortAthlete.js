@@ -40,7 +40,6 @@ module.exports = function () {
             sortable.sort((a, b) => a[1] - b[1]);
             return sortable.map(e => {
                 let name = names[e[0]] || crypto.myCipher(e[0]);
-                console.log(name)
                 return { name: name, score: e[1] }
             });
         }
