@@ -118,7 +118,7 @@ function getCompletedBlocks(uid) {
         if (debug) {
             let tempArr = [];
             for (let i = 0; i<40; i++) {
-                Math.random() < 0.5 && tempArr.push(i);
+                Math.random() < 0.1 && tempArr.push(i);
             }
             resolve(tempArr);
         }

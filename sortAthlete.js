@@ -1,5 +1,7 @@
 'use strict';
 const names = require('./views/names.json')
+const diff = require('./views/point.json')
+const crypto = require('./public/utils/crypto.js')();
 
 module.exports = function () {
     return {
@@ -27,7 +29,7 @@ module.exports = function () {
 
         sum(arr, repetitions) {
             let point = 0
-            arr.forEach(b => point += 1000 / repetitions[b])
+            arr.forEach(b => point += diff[b] / repetitions[b])
             return point;
         },
         orderObjByScore(obj) {
@@ -37,7 +39,9 @@ module.exports = function () {
                 sortable.push([athl, sorted[athl]]);
             sortable.sort((a, b) => a[1] - b[1]);
             return sortable.map(e => {
-                return { name: names[e[0]], score: e[1] }
+                let name = names[e[0]] || crypto.myCipher(e[0]);
+                console.log(name)
+                return { name: name, score: e[1] }
             });
         }
     }

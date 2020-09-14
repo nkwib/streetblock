@@ -40,7 +40,7 @@ function fetchData(uid) {
         if (xhr.readyState === xhr.DONE) {
             if (xhr.status === 200) {
                 completed = JSON.parse(xhr.response || '[]');
-                // console.log(completed);
+                // console.log(uid, completed);
                 completed.forEach(b => {
                     markAsCompleted(b);
                 })

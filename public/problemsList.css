@@ -50,19 +50,19 @@ body {
 }
 
 .block-number.d3 {
-    background-color: black;
+    background-color: #222222;
 }
 
 .block-number.d2 {
-    background-color: #621212;
+    background-color: #d63838;
 }
 
 .block-number.d1 {
-    background: #118599;
+    background: #518bec;
 }
 
 .block-number.done {
-    background: #339911;
+    background: #358627;
 }
 
 .main-list {

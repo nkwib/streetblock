@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="utils/svg-zoom.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <style>
         body{
@@ -41,7 +42,7 @@
 </head>
 <body>
     <div class="map-container">
-        <img src="map.svg">
+        <embed type="image/svg+xml" class="map-container svg-pan-zoom_viewport" src="map.svg" id="map" />
     </div>
     <div class="action-buttons">
         <button class="go-to-problems btn" onclick="goToBlocks()">
@@ -52,6 +53,11 @@
         function goToBlocks() {
             window.location.href = '/'
         }
+        document.getElementById('map').addEventListener('load', function(){
+            // Will get called after embed element was loaded
+            console.log('ciao')
+            svgPanZoom(document.getElementById('map'));
+        })
     </script>
 </body>
 </html>
