@@ -42,7 +42,7 @@
 </head>
 <body>
     <div class="map-container">
-        <embed type="image/svg+xml" class="map-container svg-pan-zoom_viewport" src="map.svg" id="map" />
+        <embed type="image/svg+xml" src="map.svg" />
     </div>
     <div class="action-buttons">
         <button class="go-to-problems btn" onclick="goToBlocks()">
@@ -53,11 +53,6 @@
         function goToBlocks() {
             window.location.href = '/'
         }
-        document.getElementById('map').addEventListener('load', function(){
-            // Will get called after embed element was loaded
-            console.log('ciao')
-            svgPanZoom(document.getElementById('map'));
-        })
     </script>
 </body>
 </html>
