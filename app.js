@@ -114,6 +114,7 @@ function fetchData() {
 }
 
 function getCompletedBlocks(uid) {
+    console.log(`${getDate()}: User ${uid} requested his blocks`)
     return new Promise(async (resolve, reject) => {
         if (debug) {
             let tempArr = [];
@@ -125,11 +126,12 @@ function getCompletedBlocks(uid) {
         const athletesRef = db.ref('/athletes/').child(uid + '/completed');
         athletesRef.orderByKey().on('value', snapshot => {
             resolve(JSON.parse(snapshot.val()) || [])
-        }, err => reject(`Error: ${err}`));
+        }, err => reject(`${getDate()} Error: ${err}`));
     })
 }
 
 function markCompletedBlocks(uid, body) {
+    console.log(`${getDate()}: User ${uid} marked some block`)
     if (debug) {
         return {}
     }
@@ -143,6 +145,7 @@ function markCompletedBlocks(uid, body) {
 }
 
 // function resetAllData() {
+//     console.log(`${getDate()}: resetAllData`)
 //     allAthletes.forEach(a => {
 //         db.ref(`athletes/${a}`).set({
 //             username: a,
