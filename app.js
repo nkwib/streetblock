@@ -59,6 +59,7 @@ app.get('', (req, res) => {
 
 app.post('/login', (req, res) => {
     let uid = req.body.uid.toLowerCase()
+    console.log(`${getDate()}: User ${uid} logged in`)
     if (allAthletes.includes(uid)) {
         res.cookie('userData', uid);
         res.render('problemsList', {
@@ -73,6 +74,7 @@ app.post('/markCompleted/:uid', (req, res) => {
         .then(data => res.send(data));
 });
 app.get('/deleteCookies', (req, res) => {
+    console.log(`${getDate()}: User logged`)
     res.cookie('userData', '');
     res.render('index');
 });
@@ -80,16 +82,14 @@ app.get('/getCompleted/:uid', (req, res) => {
     getCompletedBlocks(req.params.uid)
         .then(data => res.send(data));
 });
-app.get('/getCompleted/:uid', (req, res) => {
-    getCompletedBlocks(req.params.uid)
-        .then(data => res.send(data));
-});
 app.get('/classifica/:uid', (req, res) => {
+    console.log(`${getDate()}: User ${req.params.uid} requested the ranking`)
     res.render('results', {
         uid: req.params.uid
     })
 });
 app.get('/mappa', (req, res) => {
+    console.log(`${getDate()}: User accessed MAP`)
     res.render('map')
 });
 app.get('/getRanking', (req, res) => {
