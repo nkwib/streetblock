@@ -44,7 +44,7 @@
                     data.forEach((athl, i) => {
                         let node = document.createElement("DIV");
                         node.classList.add('list')
-                        if (athl.name === 'ytijifwm' || athl.name === '<%= uid %>') node.classList.add('isSelf')
+                        if (athl.name === '<%= uid %>') node.classList.add('isSelf')
                         let textnode = document.createTextNode(athl.name + ' - ' + athl.score);
                         node.appendChild(textnode);
                         node.innerHTML = `<div class="badge">
